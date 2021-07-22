@@ -1,14 +1,42 @@
+import java.util.Scanner; //°ªÀ» ÀÔ·Â¹Þ±â À§ÇÑ Class, headerfile °°Àº °³³ä
 
 public class Calculator {
 	
+	public static int calculate(int firstNumber, String symbol, int secondNumber) {
+			int result = 0;
+			if ("+".equals(symbol)){
+				result = firstNumber + secondNumber;
+				System.out.println("´õÇÏ±â : " + result );
+			} else if ("-".equals(symbol)){
+				result = firstNumber - secondNumber;
+				System.out.println("»©±â : " + result );
+			} else if ("*".equals(symbol)){
+				result = firstNumber * secondNumber;
+				System.out.println("°öÇÏ±â : " + result );
+			} else if ("/".equals(symbol)){
+				result = firstNumber / secondNumber;
+				System.out.println("³ª´©±â : " + result );
+			} else {
+				System.out.println("ÇØ´çÇÏÁö ¾Ê´Â ±âÈ£¸¦ ¼±ÅÃÇÏ¼Ì½À´Ï´Ù.");
+			}
+			return result;
+		}
+	
 	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("µ¡¼À :" + ( 4 + 3 ) );
-		System.out.println("»¬¼À :" + ( 4 - 3 ) );
-		System.out.println("°ö¼À :" + ( 4 * 3 ) );
-		System.out.println("³ª´°¼À :" + ( 4 / 3 ) );
-		System.out.println("³ª¸ÓÁö :" + ( 4 % 3 ) );
+		int firstNumber = Input.getFirstValue(scan);
 		
+		int result = firstNumber;
+		while(true) {
+			String symbol = Input.getSymbol(scan);
+			
+			if (symbol.equals("quit")) {
+				Output.print(result);
+				break;
+			}
+			int second = Input.getSecondValue(scan);
+			result = calculate(firstNumber, symbol, second);
+		}
 	}
-
 }
